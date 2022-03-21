@@ -8,7 +8,7 @@ const { AS2Composer, AS2Parser } = require('libas2');
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.text());
+app.use(bodyParser.text({ limit: '50mb' }));
 
 const uploadDir = 'upload';
 
@@ -57,7 +57,7 @@ app.post('/readFile', async (req, res) => {
 /**
  * Read file from file system
  */
-app.get('/message/:filename', async (req, res) => {
+app.get('/messages/:filename', async (req, res) => {
     let error;
     let file;
     try {
